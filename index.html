@@ -5,19 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-<button class="menu-btn" onclick="openMenu()">☰</button>
 
-<div id="sidebar" class="sidebar">
-
-<a href="#">🏠 Home</a>
-<a href="#">📚 Pata Elimu</a>
-<a href="#">💰 Bei za Game</a>
-<a href="#">📱 Game za Simu</a>
-<a href="#">💻 Game za PC</a>
-<a href="#">🎧 Controllers & Headsets</a>
-<a href="#">⌨️ Keyboards & Mice</a>
-
-</div>
 body{
 margin:0;
 font-family:Arial;
@@ -25,107 +13,34 @@ background:#0b0b0b;
 color:white;
 }
 
+/* HEADER */
+
 header{
 background:#111;
-padding:20px;
 text-align:center;
+padding:20px;
 }
 
 header h1{
 color:orange;
 margin:0;
-font-size:30px;
 }
 
-header p{
-color:#ccc;
-}
+/* MENU BUTTON */
 
-nav{
-background:black;
-padding:10px;
-text-align:center;
-}
-
-nav a{
-color:white;
-margin:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.search{
-text-align:center;
-margin:20px;
-}
-
-.search input{
-width:80%;
-padding:12px;
-border-radius:20px;
-border:2px solid orange;
-}
-
-.container{
-padding:20px;
-}
-
-.section-title{
-color:orange;
-margin-top:40px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.card{
-background:#141414;
-border-radius:15px;
-overflow:hidden;
-text-align:center;
-padding-bottom:15px;
-}
-
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
-.card h3{
-margin:10px;
-}
-
-.download{
-display:inline-block;
-background:orange;
-color:black;
-padding:10px 20px;
-border-radius:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-footer{
-background:#111;
-text-align:center;
-padding:20px;
-margin-top:40px;
-}
-
-</style>
-</head>
 .menu-btn{
-font-size:25px;
+font-size:26px;
 background:orange;
 color:white;
 border:none;
 padding:10px 15px;
 cursor:pointer;
+position:fixed;
+top:15px;
+left:15px;
 }
+
+/* SIDEBAR */
 
 .sidebar{
 height:100%;
@@ -140,7 +55,7 @@ padding-top:60px;
 }
 
 .sidebar a{
-padding:10px 20px;
+padding:12px 25px;
 display:block;
 color:white;
 text-decoration:none;
@@ -150,19 +65,114 @@ font-size:18px;
 .sidebar a:hover{
 background:orange;
 }
+
+.closebtn{
+position:absolute;
+top:10px;
+right:20px;
+font-size:30px;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+width:80%;
+padding:15px;
+border-radius:30px;
+border:2px solid orange;
+font-size:16px;
+}
+
+/* CONTENT */
+
+.container{
+padding:20px;
+}
+
+.section-title{
+color:orange;
+font-size:26px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:#111;
+border-radius:12px;
+overflow:hidden;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.download{
+display:inline-block;
+background:orange;
+color:black;
+padding:10px 20px;
+margin:10px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+/* TRAILER */
+
+iframe{
+width:100%;
+height:220px;
+border:none;
+border-radius:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+text-align:center;
+padding:20px;
+margin-top:40px;
+color:#aaa;
+}
+
+</style>
+</head>
+
 <body>
+
+<button class="menu-btn" onclick="openMenu()">☰</button>
+
+<div id="sidebar" class="sidebar">
+
+<a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">×</a>
+
+<a href="#">🏠 Home</a>
+<a href="#">📱 Game za Simu</a>
+<a href="#">💻 Game za PC</a>
+<a href="#">🎮 PS2 Games</a>
+<a href="#">📚 Pata Elimu</a>
+<a href="#">📞 Contact</a>
+
+</div>
 
 <header>
 <h1>🎮 Khan Gaming</h1>
 <p>Download Android Games, Apps na PS2 Games bure</p>
 </header>
-
-<nav>
-<a href="#">Home</a>
-<a href="#">Games</a>
-<a href="#">Apps</a>
-<a href="#">PS2 Games</a>
-</nav>
 
 <div class="search">
 <input type="text" placeholder="Search games...">
@@ -175,125 +185,28 @@ background:orange;
 <div class="grid">
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Grand_Theft_Auto_San_Andreas_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg">
 <h3>GTA San Andreas</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
-</div>
-<h2 class="section-title">🎬 Game Trailers</h2>
-<h2 class="section-title">🎬 Game Trailers</h2>
-
-<div class="grid">
-
-<div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/QkkoHAzjnUs"
-title="GTA San Andreas Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>GTA San Andreas Trailer</h3>
+<a class="download" href="#">Download</a>
 </div>
 
 <div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/QdBZY2fkU-0"
-title="GTA V Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>GTA V Trailer</h3>
+<img src="https://upload.wikimedia.org/wikipedia/en/5/5e/PUBG_Mobile.jpg">
+<h3>PUBG Mobile</h3>
+<a class="download" href="#">Download</a>
 </div>
 
 <div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/2gUtfBmw86Y"
-title="Need For Speed Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>Need For Speed Trailer</h3>
-</div>
-
-<div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/eaW0tYpxyp0"
-title="Call of Duty Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>Call of Duty Trailer</h3>
-</div>
-
-</div>
-<div class="grid">
-
-<div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/QkkoHAzjnUs"
-title="GTA San Andreas Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>GTA San Andreas Trailer</h3>
-</div>
-
-<div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/UZF8Kq7pY1I"
-title="Free Fire Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>Free Fire Trailer</h3>
-</div>
-
-<div class="card">
-<iframe width="100%" height="200"
-src="https://www.youtube.com/embed/2GGaM1hYVJw"
-title="Tekken 5 Trailer"
-frameborder="0"
-allowfullscreen></iframe>
-<h3>Tekken 5 Trailer</h3>
-</div>
-
-</div>
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/0/0f/Garena_Free_Fire_cover.jpg">
-<h3>Free Fire</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
+<img src="https://upload.wikimedia.org/wikipedia/en/0/03/Minecraft_box_art.png">
+<h3>Minecraft</h3>
+<a class="download" href="#">Download</a>
 </div>
 
 </div>
 
-<h2 class="section-title">📱 Android Apps</h2>
+<h2 class="section-title">🎬 Game Trailer</h2>
 
-<div class="grid">
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/CapCut_Logo.png">
-<h3>CapCut</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
-</div>
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
-<h3>Spotify</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
-</div>
-
-</div>
-
-<h2 class="section-title">🕹️ PS2 Games</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Downhill_Domination.jpg">
-<h3>Downhill Domination</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
-</div>
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Tekken5.jpg">
-<h3>Tekken 5</h3>
-<a class="download" href="https://www.mediafire.com/" target="_blank">Download</a>
-</div>
-
-</div>
+<iframe src="https://www.youtube.com/embed/QkkoHAzjnUs"></iframe>
 
 </div>
 
@@ -301,37 +214,17 @@ allowfullscreen></iframe>
 <p>© 2026 Khan Gaming</p>
 </footer>
 
+<script>
+
+function openMenu(){
+document.getElementById("sidebar").style.width="250px";
+}
+
+function closeMenu(){
+document.getElementById("sidebar").style.width="0";
+}
+
+</script>
+
 </body>
 </html>
-.menu-btn{
-font-size:25px;
-background:orange;
-color:white;
-border:none;
-padding:10px 15px;
-cursor:pointer;
-}
-
-.sidebar{
-height:100%;
-width:0;
-position:fixed;
-top:0;
-left:0;
-background:#111;
-overflow-x:hidden;
-transition:0.4s;
-padding-top:60px;
-}
-
-.sidebar a{
-padding:10px 20px;
-display:block;
-color:white;
-text-decoration:none;
-font-size:18px;
-}
-
-.sidebar a:hover{
-background:orange;
-}
