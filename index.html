@@ -5,7 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+<button class="menu-btn" onclick="openMenu()">☰</button>
 
+<div id="sidebar" class="sidebar">
+
+<a href="#">🏠 Home</a>
+<a href="#">📚 Pata Elimu</a>
+<a href="#">💰 Bei za Game</a>
+<a href="#">📱 Game za Simu</a>
+<a href="#">💻 Game za PC</a>
+<a href="#">🎧 Controllers & Headsets</a>
+<a href="#">⌨️ Keyboards & Mice</a>
+
+</div>
 body{
 margin:0;
 font-family:Arial;
@@ -106,7 +118,38 @@ margin-top:40px;
 
 </style>
 </head>
+.menu-btn{
+font-size:25px;
+background:orange;
+color:white;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+}
 
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+top:0;
+left:0;
+background:#111;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+}
+
+.sidebar a{
+padding:10px 20px;
+display:block;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar a:hover{
+background:orange;
+}
 <body>
 
 <header>
@@ -260,3 +303,35 @@ allowfullscreen></iframe>
 
 </body>
 </html>
+.menu-btn{
+font-size:25px;
+background:orange;
+color:white;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+top:0;
+left:0;
+background:#111;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+}
+
+.sidebar a{
+padding:10px 20px;
+display:block;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar a:hover{
+background:orange;
+}
