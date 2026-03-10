@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Khan Gaming</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:#0b0b0b;
+background:#0d0d0d;
 color:white;
 }
 
-/* HEADER */
-
 header{
-background:#111;
+background:black;
+padding:15px;
 text-align:center;
-padding:20px;
+border-bottom:2px solid orange;
 }
 
 header h1{
@@ -26,37 +27,33 @@ color:orange;
 margin:0;
 }
 
-/* MENU BUTTON */
-
 .menu-btn{
-font-size:26px;
-background:orange;
-color:white;
-border:none;
-padding:10px 15px;
-cursor:pointer;
-position:fixed;
-top:15px;
+position:absolute;
 left:15px;
+top:15px;
+font-size:25px;
+background:none;
+border:none;
+color:white;
+cursor:pointer;
 }
-
-/* SIDEBAR */
 
 .sidebar{
 height:100%;
 width:0;
 position:fixed;
+background:#111;
 top:0;
 left:0;
-background:#111;
 overflow-x:hidden;
 transition:0.4s;
 padding-top:60px;
+z-index:2;
 }
 
 .sidebar a{
-padding:12px 25px;
 display:block;
+padding:12px 25px;
 color:white;
 text-decoration:none;
 font-size:18px;
@@ -66,51 +63,61 @@ font-size:18px;
 background:orange;
 }
 
-.closebtn{
+.close-btn{
 position:absolute;
-top:10px;
 right:20px;
+top:10px;
 font-size:30px;
 }
-
-/* SEARCH */
-
-.search{
-text-align:center;
-margin:30px;
-}
-
-.search input{
-width:80%;
-padding:15px;
-border-radius:30px;
-border:2px solid orange;
-font-size:16px;
-}
-
-/* CONTENT */
 
 .container{
 padding:20px;
 }
 
+.search{
+width:100%;
+padding:12px;
+border-radius:25px;
+border:2px solid orange;
+margin-bottom:25px;
+font-size:16px;
+}
+
+.slider{
+width:100%;
+height:200px;
+overflow:hidden;
+border-radius:10px;
+margin-bottom:30px;
+}
+
+.slider img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
 .section-title{
 color:orange;
-font-size:26px;
+margin-top:30px;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
 gap:20px;
-margin-top:20px;
 }
 
 .card{
-background:#111;
-border-radius:12px;
+background:#1a1a1a;
+border-radius:10px;
 overflow:hidden;
 text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
 }
 
 .card img{
@@ -119,34 +126,38 @@ height:200px;
 object-fit:cover;
 }
 
-.download{
-display:inline-block;
-background:orange;
-color:black;
-padding:10px 20px;
-margin:10px;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
+.card h3{
+font-size:16px;
+padding:10px;
 }
 
-/* TRAILER */
+.download{
+background:orange;
+border:none;
+padding:10px 15px;
+margin-bottom:10px;
+border-radius:8px;
+cursor:pointer;
+color:white;
+}
 
 iframe{
 width:100%;
-height:220px;
+height:200px;
 border:none;
 border-radius:10px;
 }
 
-/* FOOTER */
-
-footer{
-background:#111;
-text-align:center;
-padding:20px;
-margin-top:40px;
-color:#aaa;
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
 }
 
 </style>
@@ -156,63 +167,86 @@ color:#aaa;
 
 <button class="menu-btn" onclick="openMenu()">☰</button>
 
-<div id="sidebar" class="sidebar">
-
-<a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">×</a>
-
-<a href="#">🏠 Home</a>
-<a href="#">📱 Game za Simu</a>
-<a href="#">💻 Game za PC</a>
-<a href="#">🎮 PS2 Games</a>
-<a href="#">📚 Pata Elimu</a>
-<a href="#">📞 Contact</a>
-
-</div>
-
 <header>
 <h1>🎮 Khan Gaming</h1>
-<p>Download Android Games, Apps na PS2 Games bure</p>
+<p>Download Android, PS2 & PC Games</p>
 </header>
 
-<div class="search">
-<input type="text" placeholder="Search games...">
+<div id="sidebar" class="sidebar">
+
+<a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+
+<a href="#">Home</a>
+<a href="#">Android Games</a>
+<a href="#">PS2 Games</a>
+<a href="#">PC Games</a>
+<a href="#">Game Trailers</a>
+<a href="#">Contact</a>
+
 </div>
 
 <div class="container">
 
-<h2 class="section-title">🎮 Android Games</h2>
+<input class="search" id="search" placeholder="Search games...">
 
-<div class="grid">
+<div class="slider">
+<img src="https://wallpapercave.com/wp/wp5128415.jpg">
+</div>
+
+<h2 class="section-title">🔥 Popular Games</h2>
+
+<div class="grid" id="gameList">
 
 <div class="card">
 <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg">
 <h3>GTA San Andreas</h3>
-<a class="download" href="#">Download</a>
+<button class="download">Download</button>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/5/5e/PUBG_Mobile.jpg">
-<h3>PUBG Mobile</h3>
-<a class="download" href="#">Download</a>
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png">
+<h3>GTA V</h3>
+<button class="download">Download</button>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/0/03/Minecraft_box_art.png">
-<h3>Minecraft</h3>
-<a class="download" href="#">Download</a>
+<img src="https://upload.wikimedia.org/wikipedia/en/0/0c/NFS_Most_Wanted.jpg">
+<h3>Need For Speed</h3>
+<button class="download">Download</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/44/Call_of_Duty_Modern_Warfare_II_Key_Art.jpg">
+<h3>Call Of Duty</h3>
+<button class="download">Download</button>
 </div>
 
 </div>
 
-<h2 class="section-title">🎬 Game Trailer</h2>
+<h2 class="section-title">🎬 Game Trailers</h2>
 
+<div class="grid">
+
+<div class="card">
 <iframe src="https://www.youtube.com/embed/QkkoHAzjnUs"></iframe>
+<h3>GTA San Andreas Trailer</h3>
+</div>
+
+<div class="card">
+<iframe src="https://www.youtube.com/embed/QdBZY2fkU-0"></iframe>
+<h3>GTA V Trailer</h3>
+</div>
+
+<div class="card">
+<iframe src="https://www.youtube.com/embed/2gUtfBmw86Y"></iframe>
+<h3>Need For Speed Trailer</h3>
+</div>
 
 </div>
 
-<footer>
-<p>© 2026 Khan Gaming</p>
-</footer>
+</div>
+
+<a class="whatsapp" href="https://wa.me/">💬</a>
 
 <script>
 
@@ -223,6 +257,26 @@ document.getElementById("sidebar").style.width="250px";
 function closeMenu(){
 document.getElementById("sidebar").style.width="0";
 }
+
+const search = document.getElementById("search");
+search.addEventListener("keyup", function(){
+
+let filter = search.value.toLowerCase();
+let games = document.querySelectorAll("#gameList .card");
+
+games.forEach(function(card){
+
+let title = card.innerText.toLowerCase();
+
+if(title.includes(filter)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+
+});
+
+});
 
 </script>
 
