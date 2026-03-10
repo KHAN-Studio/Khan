@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Khan Gaming</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
-background:black;
-color:white;
-font-family:Arial;
 margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
 }
 
 header{
 background:#111;
-padding:15px;
+padding:20px;
 text-align:center;
 }
 
 header h1{
 color:orange;
 margin:0;
+font-size:30px;
+}
+
+header p{
+color:#ccc;
 }
 
 nav{
-text-align:center;
-background:#000;
+background:black;
 padding:10px;
+text-align:center;
 }
 
 nav a{
@@ -39,70 +42,93 @@ text-decoration:none;
 font-weight:bold;
 }
 
+nav a:hover{
+color:orange;
+}
+
 .search{
 text-align:center;
 margin:20px;
 }
 
 .search input{
-padding:10px;
 width:80%;
-border-radius:10px;
-border:none;
+padding:12px;
+border-radius:20px;
+border:2px solid orange;
+font-size:16px;
 }
 
-.section{
+.container{
 padding:20px;
 }
 
-.game{
-background:#111;
-margin:20px;
-padding:20px;
-border-radius:10px;
+.section-title{
+color:orange;
+margin-top:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:#141414;
+border-radius:15px;
+overflow:hidden;
 text-align:center;
+padding-bottom:15px;
 }
 
-.game img{
+.card img{
 width:100%;
-border-radius:10px;
+height:200px;
+object-fit:cover;
 }
 
-.game h3{
-color:white;
+.card h3{
+margin:10px;
 }
 
 .download{
 display:inline-block;
-margin-top:10px;
-padding:10px 20px;
 background:orange;
 color:black;
+padding:10px 20px;
 border-radius:10px;
 text-decoration:none;
 font-weight:bold;
+}
+
+footer{
+background:#111;
+text-align:center;
+padding:20px;
+margin-top:40px;
 }
 
 .whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
-background:green;
+background:#25D366;
 color:white;
 padding:15px;
 border-radius:50px;
 text-decoration:none;
+font-weight:bold;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
 <h1>🎮 Khan Gaming</h1>
-<p>Pakua Games, Apps na PS2 Games bure</p>
+<p>Download Android Games, Apps na PS2 Games bure</p>
 </header>
 
 <nav>
@@ -116,59 +142,67 @@ text-decoration:none;
 <input type="text" placeholder="Search games...">
 </div>
 
-<div class="section">
+<div class="container">
 
-<h2>🎮 Android Games</h2>
+<h2 class="section-title">🎮 Android Games</h2>
 
-<div class="game">
-<img src="https://i.imgur.com/7yUVEkD.jpg">
+<div class="grid">
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg">
 <h3>GTA San Andreas</h3>
 <a class="download" href="#">Download</a>
 </div>
 
-<div class="game">
-<img src="https://i.imgur.com/mqKXG6F.jpg">
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/0f/Garena_Free_Fire_cover.jpg">
 <h3>Free Fire</h3>
 <a class="download" href="#">Download</a>
 </div>
 
 </div>
 
-<div class="section">
+<h2 class="section-title">📱 Android Apps</h2>
 
-<h2>📱 Android Apps</h2>
+<div class="grid">
 
-<div class="game">
-<img src="https://i.imgur.com/2yaf2wb.jpg">
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/CapCut_Logo.png">
 <h3>CapCut</h3>
 <a class="download" href="#">Download</a>
 </div>
 
-<div class="game">
-<img src="https://i.imgur.com/Fn7Yp3S.jpg">
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
 <h3>Spotify</h3>
 <a class="download" href="#">Download</a>
 </div>
 
 </div>
 
-<div class="section">
+<h2 class="section-title">🕹️ PS2 Games</h2>
 
-<h2>🕹️ PS2 Games</h2>
+<div class="grid">
 
-<div class="game">
-<img src="https://i.imgur.com/cC5KJpO.jpg">
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Downhill_Domination.jpg">
 <h3>Downhill Domination</h3>
 <a class="download" href="#">Download</a>
 </div>
 
-<div class="game">
-<img src="https://i.imgur.com/9Wq1YzL.jpg">
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Tekken5.jpg">
 <h3>Tekken 5</h3>
 <a class="download" href="#">Download</a>
 </div>
 
 </div>
+
+</div>
+
+<footer>
+<p>© 2026 Khan Gaming</p>
+</footer>
 
 <a class="whatsapp" href="https://wa.me/255000000000">Chat</a>
 
