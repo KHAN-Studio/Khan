@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khan Gaming</title>
 
 <style>
@@ -11,30 +9,31 @@
 body{
 margin:0;
 font-family:Arial;
-background:#0d0d0d;
+background:#000;
 color:white;
 }
 
-header{
-background:black;
-padding:15px;
+.header{
+background:#000;
 text-align:center;
+padding:20px;
 border-bottom:2px solid orange;
 }
 
-header h1{
+.header h1{
 color:orange;
-margin:0;
+margin:5px;
+}
+
+.header p{
+color:#ccc;
 }
 
 .menu-btn{
+font-size:28px;
 position:absolute;
 left:15px;
-top:15px;
-font-size:25px;
-background:none;
-border:none;
-color:white;
+top:25px;
 cursor:pointer;
 }
 
@@ -42,18 +41,17 @@ cursor:pointer;
 height:100%;
 width:0;
 position:fixed;
-background:#111;
 top:0;
 left:0;
+background:#111;
 overflow-x:hidden;
-transition:0.4s;
+transition:0.3s;
 padding-top:60px;
-z-index:2;
 }
 
 .sidebar a{
 display:block;
-padding:12px 25px;
+padding:12px 20px;
 color:white;
 text-decoration:none;
 font-size:18px;
@@ -63,89 +61,62 @@ font-size:18px;
 background:orange;
 }
 
-.close-btn{
-position:absolute;
-right:20px;
-top:10px;
-font-size:30px;
-}
-
-.container{
-padding:20px;
-}
-
 .search{
-width:100%;
-padding:12px;
-border-radius:25px;
+width:90%;
+margin:20px auto;
+display:block;
+padding:15px;
+border-radius:30px;
 border:2px solid orange;
-margin-bottom:25px;
 font-size:16px;
 }
 
-.slider{
-width:100%;
-height:200px;
-overflow:hidden;
-border-radius:10px;
-margin-bottom:30px;
+.hero img{
+width:90%;
+margin:10px auto;
+display:block;
+border-radius:15px;
 }
 
-.slider img{
-width:100%;
-height:200px;
-object-fit:cover;
+.section{
+width:90%;
+margin:auto;
 }
 
-.section-title{
+.section h2{
 color:orange;
-margin-top:30px;
 }
 
-.grid{
+.games{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
+grid-template-columns:1fr 1fr;
+gap:15px;
 }
 
-.card{
-background:#1a1a1a;
+.game{
+background:#111;
 border-radius:10px;
 overflow:hidden;
 text-align:center;
-transition:0.3s;
 }
 
-.card:hover{
-transform:scale(1.05);
-}
-
-.card img{
+.game img{
 width:100%;
-height:200px;
-object-fit:cover;
 }
 
-.card h3{
-font-size:16px;
-padding:10px;
-}
-
-.download{
+.game button{
 background:orange;
 border:none;
-padding:10px 15px;
-margin-bottom:10px;
+padding:10px;
+margin:10px;
 border-radius:8px;
 cursor:pointer;
-color:white;
 }
 
-iframe{
+.trailer{
 width:100%;
 height:200px;
-border:none;
-border-radius:10px;
+margin-top:10px;
 }
 
 .whatsapp{
@@ -154,9 +125,9 @@ bottom:20px;
 right:20px;
 background:#25D366;
 color:white;
+font-size:22px;
 padding:15px;
 border-radius:50%;
-font-size:22px;
 text-decoration:none;
 }
 
@@ -165,118 +136,72 @@ text-decoration:none;
 
 <body>
 
-<button class="menu-btn" onclick="openMenu()">☰</button>
-
-<header>
-<h1>🎮 Khan Gaming</h1>
-<p>Download Android, PS2 & PC Games</p>
-</header>
-
 <div id="sidebar" class="sidebar">
-
-<a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
-
 <a href="#">Home</a>
 <a href="#">Android Games</a>
 <a href="#">PS2 Games</a>
 <a href="#">PC Games</a>
-<a href="#">Game Trailers</a>
-<a href="#">Contact</a>
-
+<a href="https://wa.me/255785365824">Contact WhatsApp</a>
 </div>
 
-<div class="container">
-
-<input class="search" id="search" placeholder="Search games...">
-
-<div class="slider">
-<img src="https://wallpapercave.com/wp/wp5128415.jpg">
+<div class="header">
+<span class="menu-btn" onclick="openMenu()">☰</span>
+<h1>🎮 Khan Gaming</h1>
+<p>Download Android, PS2 & PC Games</p>
 </div>
 
-<h2 class="section-title">🔥 Popular Games</h2>
+<input class="search" placeholder="Search games...">
 
-<div class="grid" id="gameList">
+<div class="hero">
+<img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5">
+</div>
 
-<div class="card">
+<div class="section">
+<h2>🔥 Popular Games</h2>
+
+<div class="games">
+
+<div class="game">
 <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg">
 <h3>GTA San Andreas</h3>
-<button class="download">Download</button>
+<a href="https://wa.me/255785365824?text=Nataka%20GTA%20San%20Andreas%20kutoka%20Khan%20Gaming">
+<button>Download</button>
+</a>
 </div>
 
-<div class="card">
+<div class="game">
 <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png">
 <h3>GTA V</h3>
-<button class="download">Download</button>
-</div>
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/0/0c/NFS_Most_Wanted.jpg">
-<h3>Need For Speed</h3>
-<button class="download">Download</button>
-</div>
-
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/en/4/44/Call_of_Duty_Modern_Warfare_II_Key_Art.jpg">
-<h3>Call Of Duty</h3>
-<button class="download">Download</button>
+<a href="https://wa.me/255785365824?text=Nataka%20GTA%20V%20kutoka%20Khan%20Gaming">
+<button>Download</button>
+</a>
 </div>
 
 </div>
-
-<h2 class="section-title">🎬 Game Trailers</h2>
-
-<div class="grid">
-
-<div class="card">
-<iframe src="https://www.youtube.com/embed/QkkoHAzjnUs"></iframe>
-<h3>GTA San Andreas Trailer</h3>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/QdBZY2fkU-0"></iframe>
-<h3>GTA V Trailer</h3>
-</div>
+<div class="section">
+<h2>🎬 Game Trailers</h2>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/2gUtfBmw86Y"></iframe>
-<h3>Need For Speed Trailer</h3>
-</div>
+<iframe class="trailer"
+src="https://www.youtube.com/embed/QkkoHAzjnUs"
+frameborder="0"
+allowfullscreen></iframe>
+
+<iframe class="trailer"
+src="https://www.youtube.com/embed/hvoD7ehZPcM"
+frameborder="0"
+allowfullscreen></iframe>
 
 </div>
 
-</div>
-
-<a class="whatsapp" href="https://wa.me/">💬</a>
+<a href="https://wa.me/255785365824" class="whatsapp">💬</a>
 
 <script>
 
 function openMenu(){
 document.getElementById("sidebar").style.width="250px";
 }
-
-function closeMenu(){
-document.getElementById("sidebar").style.width="0";
-}
-
-const search = document.getElementById("search");
-search.addEventListener("keyup", function(){
-
-let filter = search.value.toLowerCase();
-let games = document.querySelectorAll("#gameList .card");
-
-games.forEach(function(card){
-
-let title = card.innerText.toLowerCase();
-
-if(title.includes(filter)){
-card.style.display="block";
-}else{
-card.style.display="none";
-}
-
-});
-
-});
 
 </script>
 
