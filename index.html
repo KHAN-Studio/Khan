@@ -1,227 +1,76 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khan Msafi Entertainment Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-body: #0a0a0c;
-            --card-bg: #16161a;
-            --accent-color: #ff007a;
-            --secondary-accent: #ff5e00;
-            --text-white: #ffffff;
-            --text-gray: #a1a1aa;
-            --whatsapp-green: #25d366;
-        }
+<style>
+    /* Rangi ya menu icon kama kwenye picha */
+    .menu-icon { color: #ff007a; font-size: 28px; }
 
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-white);
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0; padding: 0;
-            overflow-x: hidden;
-        }
+    /* Search bar iliyokaa kama ya picha yako */
+    .search-bar input {
+        width: 100%;
+        background: #1a1a1d;
+        border: 1px solid #333;
+        padding: 12px 20px 12px 45px;
+        border-radius: 30px;
+        color: white;
+    }
 
-        /* --- 1. SIDEBAR / DRAWER --- */
-        .sidebar {
-            height: 100%; width: 0;
-            position: fixed; z-index: 1001;
-            top: 0; left: 0;
-            background-color: var(--card-bg);
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-        }
+    /* Vitufe vya kuchuja (Filter buttons) */
+    .nav-item {
+        cursor: pointer;
+        transition: 0.3s;
+        border: 1px solid #333;
+        background: #1a1a1d;
+    }
 
-        .sidebar a {
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 18px;
-            color: var(--text-white);
-            display: block;
-            border-bottom: 1px solid #222;
-        }
+    /* Kitufe kilichochaguliwa (Kama "Zote" kwenye picha) */
+    .nav-item.active {
+        background: linear-gradient(90deg, #ff007a, #ff5e00);
+        border: none;
+    }
 
-        .sidebar a:hover { background: var(--accent-color); }
+    /* Kuficha vitu ambavyo havijachaguliwa */
+    .hidden { display: none !important; }
+</style>
 
-        .sidebar .closebtn {
-            position: absolute; top: 10px; right: 25px; font-size: 36px;
-        }
+<script>
+    // 1. Kazi ya Search Bar
+    const searchInput = document.querySelector('.search-bar input');
+    searchInput.addEventListener('keyup', (e) => {
+        const value = e.target.value.toLowerCase();
+        const allCards = document.querySelectorAll('.card, .news-item');
 
-        #overlay {
-            display: none; position: fixed;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 1000;
-        }
+        allCards.forEach(card => {
+            const title = card.innerText.toLowerCase();
+            if (title.includes(value)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
 
-        /* --- 2. HEADER & SEARCH --- */
-        header {
-            padding: 15px;
-            display: flex; align-items: center; gap: 15px;
-            position: sticky; top: 0;
-            background: var(--bg-body); z-index: 999;
-        }
+    // 2. Kazi ya Vitufe (Zote, Games, Movies, Sports News)
+    const filterButtons = document.querySelectorAll('.nav-item');
+    const contentItems = document.querySelectorAll('.card, .news-item');
 
-        .menu-icon { font-size: 24px; color: var(--accent-color); cursor: pointer; }
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Badilisha rangi ya kitufe kilichobonyezwa
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-        .search-bar {
-            flex-grow: 1; position: relative;
-        }
+            const filterValue = button.textContent.trim().toLowerCase();
 
-        .search-bar input {
-            width: 85%; background: var(--card-bg);
-            border: 1px solid #333; padding: 10px 15px 10px 40px;
-            border-radius: 25px; color: white; outline: none;
-        }
-
-        .search-bar i { position: absolute; left: 15px; top: 12px; color: var(--text-gray); }
-
-        /* --- 3. SERVICES NAV --- */
-        .services-nav {
-            display: flex; gap: 10px; padding: 10px 15px;
-            overflow-x: auto; scrollbar-width: none;
-        }
-
-        .nav-item {
-            background: var(--card-bg); padding: 8px 20px;
-            border-radius: 20px; white-space: nowrap; font-size: 13px;
-            border: 1px solid #333; cursor: pointer;
-        }
-
-        .nav-item.active { background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent)); border: none; }
-
-        /* --- 4. HERO SLIDER --- */
-        .hero {
-            margin: 15px; border-radius: 20px; height: 200px;
-            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800') center/cover;
-            position: relative; overflow: hidden;
-            display: flex; align-items: flex-end;
-        }
-
-        .hero-text {
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            width: 100%; padding: 20px;
-        }
-
-        /* --- 5. CONTENT GRID (GAMES & MOVIES) --- */
-        .section-header {
-            padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px 20px;
-        }
-
-        .card {
-            background: var(--card-bg); border-radius: 15px; overflow: hidden; position: relative;
-        }
-
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-
-        .card-tag {
-            position: absolute; top: 10px; right: 10px;
-            background: rgba(0, 255, 127, 0.8); color: black;
-            padding: 2px 8px; border-radius: 5px; font-size: 10px; font-weight: bold;
-        }
-
-        /* --- 6. NEWS SECTION --- */
-        .news-item {
-            background: var(--card-bg); margin: 0 15px 15px;
-            padding: 12px; border-radius: 15px; display: flex; gap: 15px;
-        }
-
-        .news-item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
-
-        /* --- 7. WHATSAPP BUTTON --- */
-        .wa-btn {
-            position: fixed; bottom: 20px; right: 20px;
-            background: var(--whatsapp-green); width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: white; text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); z-index: 1000;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="overlay" onclick="closeNav()"></div>
-
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#"><i class="fas fa-home"></i> Nyumbani</a>
-        <a href="#"><i class="fas fa-gamepad"></i> Game Store</a>
-        <a href="#"><i class="fas fa-video"></i> Movies & Series</a>
-        <a href="#"><i class="fas fa-news"></i> Habari za Michezo</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Kuhusu Sisi</a>
-        <a href="https://wa.me/255785365824" style="color: var(--whatsapp-green);"><i class="fab fa-whatsapp"></i> Msaada (WhatsApp)</a>
-    </div>
-
-    <header>
-        <div class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></div>
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Tafuta Games au Movies...">
-        </div>
-    </header>
-
-    <div class="services-nav">
-        <div class="nav-item active">Zote</div>
-        <div class="nav-item">Games</div>
-        <div class="nav-item">Movies</div>
-        <div class="nav-item">Sports News</div>
-    </div>
-
-    <div class="hero">
-        <div class="hero-text">
-            <h2 style="margin:0; font-size: 20px;">Dead Cells: Mobile Edition</h2>
-            <p style="margin:5px 0; font-size: 12px; color: var(--text-gray);">Cheza mchezo bora wa mwaka sasa hivi!</p>
-        </div>
-    </div>
-
-    <div class="section-header">
-        <h3 style="font-size: 16px;">Games Maarufu</h3>
-        <span style="color: var(--accent-color); font-size: 12px;">Ona Zote</span>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <span class="card-tag">MOBILE</span>
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=300" alt="GTA">
-            <div style="padding: 10px; font-size: 13px;">GTA V Mobile</div>
-        </div>
-        <div class="card">
-            <span class="card-tag" style="background:#a29bfe;">PC</span>
-            <img src="https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?q=80&w=300" alt="Tomb Raider">
-            <div style="padding: 10px; font-size: 13px;">Tomb Raider 2018</div>
-        </div>
-    </div>
-
-    <div class="section-header">
-        <h3 style="font-size: 16px;">Movies & Habari</h3>
-    </div>
-    <div class="news-item">
-        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=150" alt="Habari">
-        <div>
-            <h4 style="margin:0; font-size: 14px;">Simba SC yaanza mazoezi makali</h4>
-            <p style="margin:5px 0; font-size: 11px; color: var(--text-gray);">Kikosi cha wekundu wa msimbazi kimeanza maandalizi...</p>
-        </div>
-    </div>
-
-    <a href="https://wa.me/255785365824?text=Habari,%20nataka%20kufanya%20malipo" class="wa-btn">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("overlay").style.display = "block";
-        }
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("overlay").style.display = "none";
-        }
-    </script>
-</body>
-</html>
+            contentItems.forEach(item => {
+                // Ikiwa ni "Zote", onyesha kila kitu
+                if (filterValue === 'zote') {
+                    item.classList.remove('hidden');
+                } 
+                // Kuchuja kulingana na aina
+                else if (item.innerText.toLowerCase().includes(filterValue)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    });
+</script>
