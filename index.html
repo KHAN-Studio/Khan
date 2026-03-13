@@ -1,274 +1,234 @@
 <!DOCTYPE html>
-<html>
+<html lang="sw">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Khan Gaming</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Zone | Tanzania No. 1</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        /* --- CSS YA WEBSITE (STYLE) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-margin:0;
-font-family:Arial;
-background:#000;
-color:white;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0b0b0d; /* Rangi nyeusi kigamer */
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-.header{
-background:#000;
-text-align:center;
-padding:20px;
-border-bottom:2px solid orange;
-}
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff0055;
+        }
 
-.header h1{
-color:orange;
-margin:5px;
-}
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0055;
+            letter-spacing: 2px;
+        }
 
-.header p{
-color:#ccc;
-}
+        .logo span { color: #fff; }
 
-.menu-btn{
-font-size:28px;
-position:absolute;
-left:15px;
-top:25px;
-cursor:pointer;
-}
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
 
-.sidebar{
-height:100%;
-width:0;
-position:fixed;
-top:0;
-left:0;
-background:#111;
-overflow-x:hidden;
-transition:0.3s;
-padding-top:60px;
-}
+        nav ul li a:hover { color: #ff0055; }
 
-.sidebar a{
-display:block;
-padding:12px 20px;
-color:white;
-text-decoration:none;
-font-size:18px;
-}
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
 
-.sidebar a:hover{
-background:orange;
-}
+        .hero-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff0055;
+        }
 
-.search{
-width:90%;
-margin:20px auto;
-display:block;
-padding:15px;
-border-radius:30px;
-border:2px solid orange;
-font-size:16px;
-}
+        .btn-main {
+            padding: 15px 40px;
+            background: #ff0055;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.4s;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+        }
 
-.hero img{
-width:90%;
-margin:10px auto;
-display:block;
-border-radius:15px;
-}
+        .btn-main:hover { 
+            transform: scale(1.1); 
+            background: #fff;
+            color: #ff0055;
+            box-shadow: 0 0 25px #ff0055;
+        }
 
-.section{
-width:90%;
-margin:auto;
-}
+        /* Video Section */
+        .video-container {
+            padding: 60px 10%;
+            text-align: center;
+            background: #111;
+        }
 
-.section h2{
-color:orange;
-}
+        .video-container h2 {
+            font-family: 'Orbitron';
+            margin-bottom: 30px;
+            color: #ff0055;
+        }
 
-.games{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 4px solid #333;
+            border-radius: 10px;
+        }
 
-.game{
-background:#111;
-border-radius:10px;
-overflow:hidden;
-text-align:center;
-}
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+        }
 
-.game img{
-width:100%;
-}
+        /* Games Grid */
+        .games-section { padding: 80px 10%; text-align: center; }
+        .games-section h2 { margin-bottom: 50px; font-family: 'Orbitron'; font-size: 2rem; }
 
-.game button{
-background:orange;
-border:none;
-padding:10px;
-margin:10px;
-border-radius:8px;
-cursor:pointer;
-}
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
 
-.trailer{
-width:100%;
-height:200px;
-margin-top:10px;
-}
+        .game-card {
+            background: #1a1a1d;
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.4s;
+            border: 1px solid #222;
+        }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-font-size:22px;
-padding:15px;
-border-radius:50%;
-text-decoration:none;
-}
+        .game-card:hover { 
+            border-color: #ff0055; 
+            transform: translateY(-15px);
+            background: #25252b;
+        }
 
-</style>
+        .game-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            background: #000;
+            border-top: 1px solid #222;
+            color: #777;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 15px; }
+            nav ul li { margin: 0 10px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="sidebar" class="sidebar">
-<a href="#">Home</a>
-<a href="#">Android Games</a>
-<a href="#">PS2 Games</a>
-<a href="#">PC Games</a>
-<a href="https://wa.me/255785365824">Contact WhatsApp</a>
-</div>
+    <nav>
+        <div class="logo">GAMER<span>ZONE</span></div>
+        <ul>
+            <li><a href="#">Nyumbani</a></li>
+            <li><a href="#video">Trailers</a></li>
+            <li><a href="#games">Games</a></li>
+        </ul>
+    </nav>
 
-<div class="header">
-<span class="menu-btn" onclick="openMenu()">☰</span>
-<h1>🎮 Khan Gaming</h1>
-<p>Download Android, PS2 & PC Games</p>
-</div>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>DOMINATE THE GAME</h1>
+            <p>Pata updates za michezo yote mipya ya PS5, PC, na Xbox kwa haraka zaidi.</p>
+            <br><br>
+            <a href="#games" class="btn-main">Gundua Michezo</a>
+        </div>
+    </header>
 
-<input class="search" placeholder="Search games...">
+    <section id="video" class="video-container">
+        <h2>Latest Game Trailer</h2>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
 
-<div class="hero">
-<img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5">
-</div>
+    <section id="games" class="games-section">
+        <h2>Michezo Inayovuma</h2>
+        <div class="game-grid">
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=500');"></div>
+                <h3>eSports Arena</h3>
+                <p>Jiunge na timu bora za Tanzania sasa.</p>
+            </div>
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500');"></div>
+                <h3>Cyber Future</h3>
+                <p>Mchezo wa kusisimua wenye teknolojia ya juu.</p>
+            </div>
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&q=80&w=500');"></div>
+                <h3>Racing Rivals</h3>
+                <p>Mashindano ya magari yenye picha angavu (4K).</p>
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-<h2>🔥 Popular Games</h2>
-
-<div class="games">
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/1/10/NFS_Most_Wanted_Box_Art.jpg">
-<a href="https://wa.me/255785365824?text=Nataka%20GTA%20San%20Andreas">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png">
-<h3>GTA V</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20GTA%20V">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/0/0c/NFS_Most_Wanted.jpg">
-<h3>Need For Speed</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20Need%20For%20Speed">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/4/44/Call_of_Duty_Modern_Warfare_II_Key_Art.jpg">
-<h3>Call Of Duty</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20Call%20Of%20Duty">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/PES2021.jpg">
-<h3>PES 2021</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20PES%202021">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/FIFA_23_Cover.jpg">
-<h3>FIFA 23</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20FIFA%2023">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/1/1f/Minecraft_cover.png">
-<h3>Minecraft</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20Minecraft">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Subway_Surfers.jpg">
-<h3>Subway Surfers</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20Subway%20Surfers">
-<button>Download</button>
-</a>
-</div>
-
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg">
-<h3>GTA San Andreas</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20GTA%20San%20Andreas%20kutoka%20Khan%20Gaming">
-<button>Download</button>
-</a>
-</div>
-
-<div class="game">
-<img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png">
-<h3>GTA V</h3>
-<a href="https://wa.me/255785365824?text=Nataka%20GTA%20V%20kutoka%20Khan%20Gaming">
-<button>Download</button>
-</a>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>🎬 Game Trailers</h2>
-
-<iframe class="trailer"
-src="https://www.youtube.com/embed/QkkoHAzjnUs"
-frameborder="0"
-allowfullscreen></iframe>
-
-<iframe class="trailer"
-src="https://www.youtube.com/embed/hvoD7ehZPcM"
-frameborder="0"
-allowfullscreen></iframe>
-
-</div>
-
-<a href="https://wa.me/255785365824" class="whatsapp">💬</a>
-
-<script>
-
-function openMenu(){
-document.getElementById("sidebar").style.width="250px";
-}
-
-</script>
+    <footer>
+        <p>&copy; 2024 GamerZone TZ. Haki zote zimehifadhiwa.</p>
+    </footer>
 
 </body>
 </html>
